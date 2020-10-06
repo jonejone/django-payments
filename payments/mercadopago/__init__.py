@@ -124,7 +124,7 @@ class MercadoPagoProvider(BasicProvider):
             payment.change_status(PaymentStatus.ERROR)
             return redirect(payment.get_failure_url())
 
-        self.process_payment(payment, collection_id)
+        self.process_collection(payment, collection_id)
 
         return redirect(payment.get_success_url())
 
