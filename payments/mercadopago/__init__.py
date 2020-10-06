@@ -5,6 +5,7 @@ import re
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from mercadopago import MP
+
 from payments import PaymentError
 from payments import PaymentStatus
 from payments import RedirectNeeded
@@ -120,6 +121,7 @@ class MercadoPagoProvider(BasicProvider):
     def process_callback(self, payment, request):
         collection_id = request.GET.get("collection_id", None)
         if not collection_id.isdigit():
+            payment.change_status(PaymentStatus.ERROR)
             return redirect(payment.get_failure_url())
 
         self.process_payment(payment, collection_id)
