@@ -61,5 +61,6 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     install_requires=REQUIREMENTS,
+    extras_require={"mercadopago": ["mercadopago<1.0.0"]},
     zip_safe=False,
 )
