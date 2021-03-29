@@ -142,7 +142,8 @@ def provider_factory(variant):
         module = __import__(
             str(module_path), globals(), locals(), [str(class_name)])
         class_ = getattr(module, class_name)
-        PROVIDER_CACHE[variant] = class_(**config)
+        return class_(**config)
+        #PROVIDER_CACHE[variant] = class_(**config)
     return PROVIDER_CACHE[variant]
 
 
